@@ -371,7 +371,6 @@ ngx_http_init_connection(ngx_connection_t *c)
     }
 }
 
-
 static void
 ngx_http_wait_request_handler(ngx_event_t *rev)
 {
@@ -1472,13 +1471,14 @@ ngx_http_process_request_headers(ngx_event_t *rev)
             ngx_log_debug2(NGX_LOG_DEBUG_HTTP, r->connection->log, 0,
                            "http header: \"%V: %V\"",
                            &h->key, &h->value);
-
             continue;
         }
 
         if (rc == NGX_HTTP_PARSE_HEADER_DONE) {
 
             /* a whole header has been parsed successfully */
+
+            ngx_http_log_request(r);    //  <--
 
             ngx_log_debug0(NGX_LOG_DEBUG_HTTP, r->connection->log, 0,
                            "http header done");
@@ -3712,7 +3712,6 @@ ngx_http_free_request(ngx_http_request_t *r, ngx_int_t rc)
     ngx_destroy_pool(pool);
 }
 
-
 static void
 ngx_http_log_request(ngx_http_request_t *r)
 {
@@ -3729,7 +3728,6 @@ ngx_http_log_request(ngx_http_request_t *r)
         log_handler[i](r);
     }
 }
-
 
 void
 ngx_http_close_connection(ngx_connection_t *c)
