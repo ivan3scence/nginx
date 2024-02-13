@@ -1,3 +1,7 @@
 
-Documentation is available at http://nginx.org
+./configure
+make
+sudo objs/nginx -c $PWD/example_nginx.conf
 
+cat /var/log/nginx_myaccess.log
+# cat /var/log/nginx_errors.log
