@@ -3,5 +3,6 @@
 make
 sudo objs/nginx -c $PWD/example_nginx.conf
 
+curl -i -X GET http://localhost:8080
 cat /var/log/nginx_myaccess.log
 # cat /var/log/nginx_errors.log
